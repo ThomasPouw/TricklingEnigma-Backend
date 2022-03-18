@@ -5,7 +5,9 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
+import thomas.pouw.trickingenigmabackend.LevelService.WordDictionary.ScrabbleDictionary;
 
+import java.io.IOException;
 import java.sql.*;
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -40,7 +42,7 @@ public class TrickingEnigmaBackendApplication {
             }
         };
     }
-    public static void main(String[] args) {
+    public static void main(String[] args){
         TrickingEnigmaBackendApplication trickingEnigmaBackendApplication = new TrickingEnigmaBackendApplication();
         trickingEnigmaBackendApplication.connect();
         SpringApplication.run(TrickingEnigmaBackendApplication.class, args);
