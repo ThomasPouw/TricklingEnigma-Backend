@@ -1,5 +1,9 @@
 package thomas.pouw.trickingenigmabackend.RecordService.Entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import com.sun.istack.NotNull;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.Type;
@@ -10,7 +14,7 @@ import java.util.Date;
 import java.util.UUID;
 
 @Entity
-@Table(name = "Record")
+@Table(name = "Record", schema = "public")
 public class Record {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -24,13 +28,14 @@ public class Record {
     @Column(name="record_created")
     @CreationTimestamp
     private Date record_created;
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "user_id")
+    @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
+    @ManyToOne(optional = true, fetch = FetchType.LAZY)
+    @JoinTable(name = "record_user",
+            joinColumns =
+                    { @JoinColumn(name = "record_id", referencedColumnName = "id", nullable = true) },
+            inverseJoinColumns =
+                    { @JoinColumn(name = "user_id", referencedColumnName = "id", nullable = true) })//https://www.baeldung.com/jpa-one-to-one
     private User user;
-
-   // public User getUser() {
-    //    return user;
-   // }
 
     public Record(String times, int turns, Date recordCreated){
         this.time = times;

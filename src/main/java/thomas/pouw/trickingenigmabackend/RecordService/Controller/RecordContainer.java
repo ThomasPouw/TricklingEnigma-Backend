@@ -38,8 +38,9 @@ public class RecordContainer {
         return record;
     }
     @PutMapping(value="/")
-    public void UpdateRecord(@RequestBody Record record){
+    public Record updateRecord(@RequestBody Record record){
         recordService.saveOrUpdate(record);
+        return record;
     }
     /*@GetMapping("/User")
     public List<Record> GetRecordByUserAndStage(){
