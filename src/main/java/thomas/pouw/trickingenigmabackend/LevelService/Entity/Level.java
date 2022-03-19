@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+import thomas.pouw.trickingenigmabackend.RecordService.Entity.Record;
 
 import javax.persistence.*;
 import java.util.List;
@@ -23,6 +24,10 @@ public class Level {
     @OneToMany(mappedBy = "level")
     @JsonManagedReference
     private List<LevelSprite> levelSprite;
+
+    @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id" )
+    @OneToMany(cascade = CascadeType.ALL, mappedBy="level")//https://www.baeldung.com/jpa-one-to-one
+    private List<Record> records;
 
     public void setID(UUID ID) {
         this.ID = ID;
@@ -46,5 +51,13 @@ public class Level {
 
     public String getName() {
         return name;
+    }
+
+    public void setRecords(List<Record> records) {
+        this.records = records;
+    }
+
+    public List<Record> getRecords() {
+        return records;
     }
 }

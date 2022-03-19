@@ -1,6 +1,7 @@
 package thomas.pouw.trickingenigmabackend.UserService.Entity;
 
 import com.fasterxml.jackson.annotation.*;
+import thomas.pouw.trickingenigmabackend.LevelService.Entity.Sprite;
 import thomas.pouw.trickingenigmabackend.RecordService.Entity.Record;
 
 import javax.persistence.*;
@@ -19,11 +20,11 @@ public class User {
     private String name;
     @Column(name="email")
     private String email;
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "nationality_id", referencedColumnName = "id")
+    @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "nationality_id")
     private Nationality nationality;
-    @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id" )
-    @OneToMany(cascade = CascadeType.ALL, mappedBy="user")//https://www.baeldung.com/jpa-one-to-one
+    @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy="user" )//https://www.baeldung.com/jpa-one-to-one
     private List<Record> record;
     public User(String name, String email){
         this.name= name;
@@ -47,9 +48,6 @@ public class User {
     public Nationality getNationality() {
         return nationality;
     }
-    //public Nationality getNationality() {
-    //    return nationality;
-    //}
 
     public void setId(UUID id) {
         this.id = id;
@@ -73,8 +71,4 @@ public class User {
     public void setNationality(Nationality nationality) {
         this.nationality = nationality;
     }
-
-    //public void setNationality(Nationality nationality) {
-    //    this.nationality = nationality;
-    //}
 }

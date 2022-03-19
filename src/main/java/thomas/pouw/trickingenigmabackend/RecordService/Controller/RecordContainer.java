@@ -20,7 +20,7 @@ import java.util.UUID;
 public class RecordContainer {
     @Autowired
     RecordService recordService;
-    @GetMapping("/")
+    @GetMapping
     public List<Record> GetAll(){
         return recordService.GetAll();
     }
@@ -32,12 +32,12 @@ public class RecordContainer {
     public Record GetUserRecordOfStage(){
         return recordService.GetRecordByUserIDAndStageID(UUID.fromString("b2323337-da9a-4b3c-a719-2d3597d88278"));
     }
-    @PostMapping(value="/")
+    @PostMapping
     public Record saveNewRecord(@RequestBody Record record){
         recordService.saveOrUpdate(record);
         return record;
     }
-    @PutMapping(value="/")
+    @PutMapping
     public Record updateRecord(@RequestBody Record record){
         recordService.saveOrUpdate(record);
         return record;

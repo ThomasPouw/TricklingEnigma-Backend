@@ -7,6 +7,7 @@ import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import com.sun.istack.NotNull;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.Type;
+import thomas.pouw.trickingenigmabackend.LevelService.Entity.Level;
 import thomas.pouw.trickingenigmabackend.UserService.Entity.User;
 
 import javax.persistence.*;
@@ -29,13 +30,21 @@ public class Record {
     @CreationTimestamp
     private Date record_created;
     @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
-    @ManyToOne(optional = true, fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinTable(name = "record_user",
             joinColumns =
-                    { @JoinColumn(name = "record_id", referencedColumnName = "id", nullable = true) },
+                    { @JoinColumn(name = "record_id", referencedColumnName = "id") },
             inverseJoinColumns =
-                    { @JoinColumn(name = "user_id", referencedColumnName = "id", nullable = true) })//https://www.baeldung.com/jpa-one-to-one
+                    { @JoinColumn(name = "user_id", referencedColumnName = "id") })//https://www.baeldung.com/jpa-one-to-one
     private User user;
+    @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinTable(name = "level_record",
+            joinColumns =
+                    { @JoinColumn(name = "record_id", referencedColumnName = "id") },
+            inverseJoinColumns =
+                    { @JoinColumn(name = "level_id", referencedColumnName = "id") })//https://www.baeldung.com/jpa-one-to-one
+    private Level level;
 
     public Record(String times, int turns, Date recordCreated){
         this.time = times;
@@ -86,5 +95,13 @@ public class Record {
 
     public void setUser(User user) {
         this.user = user;
+    }
+
+    public Level getLevel() {
+        return level;
+    }
+
+    public void setLevel(Level level) {
+        this.level = level;
     }
 }
