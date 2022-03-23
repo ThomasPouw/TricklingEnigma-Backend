@@ -1,5 +1,6 @@
 package thomas.pouw.trickingenigmabackend.UserService.Container;
 
+import io.swagger.annotations.Api;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import thomas.pouw.trickingenigmabackend.UserService.Entity.Nationality;
@@ -8,6 +9,7 @@ import thomas.pouw.trickingenigmabackend.UserService.Service.NationalityService;
 
 import java.util.List;
 
+@Api(description = "Nationality Controller", tags = { "Nationality" })
 @RestController
 @RequestMapping("/Nationality")
 public class NationalityContainer {

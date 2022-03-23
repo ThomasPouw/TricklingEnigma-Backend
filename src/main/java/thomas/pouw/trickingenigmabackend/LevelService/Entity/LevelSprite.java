@@ -1,10 +1,11 @@
 package thomas.pouw.trickingenigmabackend.LevelService.Entity;
 
 import com.fasterxml.jackson.annotation.*;
+import springfox.documentation.annotations.ApiIgnore;
 
 import javax.persistence.*;
 import java.util.UUID;
-
+@ApiIgnore
 @Entity
 @Table(name="levelsprite", schema = "public")
 @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
