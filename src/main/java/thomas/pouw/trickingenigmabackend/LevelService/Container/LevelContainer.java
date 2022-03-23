@@ -1,5 +1,6 @@
 package thomas.pouw.trickingenigmabackend.LevelService.Container;
 
+import io.swagger.annotations.Api;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import thomas.pouw.trickingenigmabackend.LevelService.Entity.Level;
@@ -8,6 +9,7 @@ import thomas.pouw.trickingenigmabackend.LevelService.Service.LevelService;
 import java.util.List;
 import java.util.UUID;
 
+@Api(description = "Level Controller", tags = { "Level" })
 @RestController
 @RequestMapping("/Level")
 public class LevelContainer {

@@ -14,5 +14,7 @@ public interface RecordRepository extends CrudRepository<Record, UUID> {
     //public List<Record> getAllByRecordCreatedBefore(Date RecordCreated);
     List<Record> findRecordsByTurnsLessThanEqual(int turns);
     public Record findRecordByID(@Param("id") UUID id);
-    //public Record findRecordByUser_Id(@Param("id") UUID id);
+    //public List<Record> findRecordsByUser_IdOrderByre(UUID user_id);
+    public Record findFirstByUser_IdAndAndLevel_IDOrderByTurnsAscTimeAsc(UUID user_id, UUID level_id);
+    public List<Record> findRecordsByLevel_IDAndUser_Nationality_IdOrderByTimeAscTurnsAsc(UUID level_id, UUID nationality_id);
 }

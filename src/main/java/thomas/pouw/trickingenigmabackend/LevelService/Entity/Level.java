@@ -4,13 +4,14 @@ import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+import springfox.documentation.annotations.ApiIgnore;
 import thomas.pouw.trickingenigmabackend.RecordService.Entity.Record;
 
 import javax.persistence.*;
 import java.util.List;
 import java.util.Set;
 import java.util.UUID;
-
+@ApiIgnore
 @Entity
 @Table(name="level", schema = "public")
 @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})

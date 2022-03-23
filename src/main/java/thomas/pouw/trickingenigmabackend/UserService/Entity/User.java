@@ -1,6 +1,7 @@
 package thomas.pouw.trickingenigmabackend.UserService.Entity;
 
 import com.fasterxml.jackson.annotation.*;
+import springfox.documentation.annotations.ApiIgnore;
 import thomas.pouw.trickingenigmabackend.LevelService.Entity.Sprite;
 import thomas.pouw.trickingenigmabackend.RecordService.Entity.Record;
 
@@ -8,6 +9,7 @@ import javax.persistence.*;
 import java.util.List;
 import java.util.UUID;
 
+@ApiIgnore
 @Entity
 @Table(name = "user", schema = "public")
 @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})

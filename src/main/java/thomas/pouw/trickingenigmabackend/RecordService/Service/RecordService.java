@@ -29,8 +29,8 @@ public class RecordService {
         List<Record> result = new ArrayList<>();
         return null;
     }
-    public List<Record> GetAllRecordsByNationalityAndRecordID(){
-        return null;
+    public List<Record> GetAllRecordsByLevelAndNationality(UUID level_id, UUID nationality_id){
+        return recordRepository.findRecordsByLevel_IDAndUser_Nationality_IdOrderByTimeAscTurnsAsc(level_id, nationality_id);
     }
     public Record saveOrUpdate(Record record){
         recordRepository.save(record);
@@ -38,5 +38,8 @@ public class RecordService {
     }
     public Record GetRecordByID(UUID ID){
         return recordRepository.findRecordByID(ID);
+    }
+    public Record GetAllRecordsByUserAndLevel(UUID user_id, UUID level_id){
+        return recordRepository.findFirstByUser_IdAndAndLevel_IDOrderByTurnsAscTimeAsc(user_id, level_id);
     }
 }

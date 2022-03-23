@@ -1,5 +1,6 @@
 package thomas.pouw.trickingenigmabackend.RecordService.Controller;
 
+import io.swagger.annotations.Api;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -17,6 +18,7 @@ import java.util.UUID;
 
 @RestController
 @RequestMapping("/Records")
+@Api(description = "Record Controller", tags = { "Record" })
 public class RecordContainer {
     @Autowired
     RecordService recordService;
@@ -31,6 +33,14 @@ public class RecordContainer {
     @GetMapping("/User")
     public Record GetUserRecordOfStage(){
         return recordService.GetRecordByUserIDAndStageID(UUID.fromString("b2323337-da9a-4b3c-a719-2d3597d88278"));
+    }
+    @GetMapping("/Level/User")
+    public Record GetRecordFromUserAndLevel(@RequestParam("Level_ID") UUID level_id, @RequestParam("User_ID") UUID user_id){
+        return recordService.GetAllRecordsByUserAndLevel(user_id, level_id);
+    }
+    @GetMapping("/Level/Nationality")
+    public List<Record> GetRecordsFromLevelAndNationality(@RequestParam("Level_ID") UUID level_id, @RequestParam("Nationality_ID") UUID nationality_id){
+        return recordService.GetAllRecordsByLevelAndNationality(level_id, nationality_id);
     }
     @PostMapping
     public Record saveNewRecord(@RequestBody Record record){

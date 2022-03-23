@@ -1,10 +1,12 @@
 package thomas.pouw.trickingenigmabackend.UserService.Entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import springfox.documentation.annotations.ApiIgnore;
 
 import javax.persistence.*;
 import java.util.UUID;
 
+@ApiIgnore
 @Entity
 @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class Nationality {

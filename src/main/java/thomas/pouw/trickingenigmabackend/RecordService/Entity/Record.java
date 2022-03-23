@@ -7,13 +7,14 @@ import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import com.sun.istack.NotNull;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.Type;
+import springfox.documentation.annotations.ApiIgnore;
 import thomas.pouw.trickingenigmabackend.LevelService.Entity.Level;
 import thomas.pouw.trickingenigmabackend.UserService.Entity.User;
 
 import javax.persistence.*;
 import java.util.Date;
 import java.util.UUID;
-
+@ApiIgnore
 @Entity
 @Table(name = "Record", schema = "public")
 public class Record {
@@ -23,7 +24,7 @@ public class Record {
     private UUID ID;
     @Column(name="time")
     @NotNull
-    private String time;
+    private int time;
     @Column(name="turns")
     private int turns;
     @Column(name="record_created")
@@ -46,12 +47,12 @@ public class Record {
                     { @JoinColumn(name = "level_id", referencedColumnName = "id") })//https://www.baeldung.com/jpa-one-to-one
     private Level level;
 
-    public Record(String times, int turns, Date recordCreated){
+    public Record(int times, int turns, Date recordCreated){
         this.time = times;
         this.turns = turns;
         this.record_created = recordCreated;
     }
-    public Record(String times, int turns){
+    public Record(int times, int turns){
         this.time = times;
         this.turns = turns;
     }
@@ -65,7 +66,7 @@ public class Record {
         return turns;
     }
 
-    public String getTime() {
+    public int getTime() {
         return time;
     }
 
@@ -81,7 +82,7 @@ public class Record {
         record_created = recordCreated;
     }
 
-    public void setTime(String time) {
+    public void setTime(int time) {
         this.time = time;
     }
 
