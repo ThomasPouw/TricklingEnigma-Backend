@@ -1,11 +1,13 @@
 package thomas.pouw.trickingenigmabackend.RecordService.Interface.Repository;
 
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 import thomas.pouw.trickingenigmabackend.RecordService.Entity.Record;
 
-import java.util.Date;
 import java.util.List;
 import java.util.UUID;
 
@@ -14,7 +16,8 @@ public interface RecordRepository extends CrudRepository<Record, UUID> {
     //public List<Record> getAllByRecordCreatedBefore(Date RecordCreated);
     List<Record> findRecordsByTurnsLessThanEqual(int turns);
     public Record findRecordByID(@Param("id") UUID id);
-    //public List<Record> findRecordsByUser_IdOrderByre(UUID user_id);
+    public List<Record> findRecordsByUser_IdOrderByRecordCreated(UUID user_id);
     public Record findFirstByUser_IdAndAndLevel_IDOrderByTurnsAscTimeAsc(UUID user_id, UUID level_id);
     public List<Record> findRecordsByLevel_IDAndUser_Nationality_IdOrderByTimeAscTurnsAsc(UUID level_id, UUID nationality_id);
+    public List<Record> findAllBy(Pageable pageable);
 }

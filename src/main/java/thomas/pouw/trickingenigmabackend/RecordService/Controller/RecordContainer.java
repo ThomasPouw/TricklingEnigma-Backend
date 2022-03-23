@@ -24,8 +24,22 @@ public class RecordContainer {
     RecordService recordService;
     @GetMapping
     public List<Record> GetAll(){
+
         return recordService.GetAll();
     }
+    @GetMapping("/Turns")
+    public List<Record> GetAllOrderedByTurns(){
+        return recordService.GetAllOrderedByTurns();
+    }
+    @GetMapping("/Time")
+    public List<Record> GetAllOrderedByTime(){
+        return recordService.GetAllOrderedByTime();
+    }
+    @GetMapping("{Record_ID}")
+    public Record GetRecord(@PathVariable("Record_ID") UUID Record_ID){
+        return recordService.GetRecordByID(Record_ID);
+    }
+
     @GetMapping("/UnderTurns/{turns}")
     public List<Record> GetAllUnderTurns(@PathVariable("turns") int turns){
         return recordService.GetRecordsUnderEqualTurns(turns);

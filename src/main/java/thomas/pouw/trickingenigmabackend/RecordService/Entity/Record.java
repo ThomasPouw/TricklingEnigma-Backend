@@ -29,7 +29,7 @@ public class Record {
     private int turns;
     @Column(name="record_created")
     @CreationTimestamp
-    private Date record_created;
+    private Date recordCreated;
     @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinTable(name = "record_user",
@@ -50,7 +50,7 @@ public class Record {
     public Record(int times, int turns, Date recordCreated){
         this.time = times;
         this.turns = turns;
-        this.record_created = recordCreated;
+        this.recordCreated = recordCreated;
     }
     public Record(int times, int turns){
         this.time = times;
@@ -59,7 +59,7 @@ public class Record {
     public Record() {}
 
     public Date getRecordCreated() {
-        return record_created;
+        return recordCreated;
     }
 
     public int getTurns() {
@@ -79,7 +79,7 @@ public class Record {
     }
 
     public void setRecordCreated(Date recordCreated) {
-        record_created = recordCreated;
+        this.recordCreated = recordCreated;
     }
 
     public void setTime(int time) {

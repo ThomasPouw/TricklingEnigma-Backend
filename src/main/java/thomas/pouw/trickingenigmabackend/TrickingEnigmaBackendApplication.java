@@ -29,5 +29,6 @@ public class TrickingEnigmaBackendApplication {
         DatabaseConfig.connect();
         SpringApplication.run(TrickingEnigmaBackendApplication.class, args);
     }
+    //http://localhost:8080/swagger-ui/index.html#/
 
 }
