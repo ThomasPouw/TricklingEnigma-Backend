@@ -1,12 +1,9 @@
 package thomas.pouw.trickingenigmabackend.RecordService.Entity;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import com.sun.istack.NotNull;
 import org.hibernate.annotations.CreationTimestamp;
-import org.hibernate.annotations.Type;
 import springfox.documentation.annotations.ApiIgnore;
 import thomas.pouw.trickingenigmabackend.LevelService.Entity.Level;
 import thomas.pouw.trickingenigmabackend.UserService.Entity.User;

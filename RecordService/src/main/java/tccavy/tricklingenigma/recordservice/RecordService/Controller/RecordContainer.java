@@ -1,18 +1,11 @@
-package thomas.pouw.trickingenigmabackend.RecordService.Controller;
+package tccavy.tricklingenigma.recordservice.RecordService.Controller;
 
+import tccavy.tricklingenigma.recordservice.RecordService.Entity.Record;
+import tccavy.tricklingenigma.recordservice.RecordService.Service.RecordService;
 import io.swagger.annotations.Api;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-import thomas.pouw.trickingenigmabackend.RecordService.Entity.Record;
-import thomas.pouw.trickingenigmabackend.RecordService.Interface.Repository.RecordRepository;
-import thomas.pouw.trickingenigmabackend.RecordService.Service.RecordService;
-import thomas.pouw.trickingenigmabackend.UserService.Entity.User;
-import thomas.pouw.trickingenigmabackend.UserService.Interface.Repository.UserRepository;
 
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 import java.util.UUID;
 
