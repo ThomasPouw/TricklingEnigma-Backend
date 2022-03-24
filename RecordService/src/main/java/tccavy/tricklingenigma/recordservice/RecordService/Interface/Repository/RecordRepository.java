@@ -16,6 +16,7 @@ public interface RecordRepository extends CrudRepository<Record, UUID> {
     public Record findRecordByID(@Param("id") UUID id);
     public List<Record> findRecordsByUserIDOrderByRecordCreated(UUID user_id);
     public Record findFirstByUserIDAndLevelIDOrderByTurnsAscTimeAsc(UUID user_id, UUID level_id);
-    //public List<Record> findRecordsByLevel_IdAndUser_Nationality_IdOrderByTimeAscTurnsAsc(UUID level_id, UUID nationality_id)
     public List<Record> findAllBy(Pageable pageable);
+    public List<Record> findRecordsByLevelID(UUID levelID, Pageable pageable);
+
 }

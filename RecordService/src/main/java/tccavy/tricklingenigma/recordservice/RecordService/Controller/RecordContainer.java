@@ -1,5 +1,7 @@
 package tccavy.tricklingenigma.recordservice.RecordService.Controller;
 
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import tccavy.tricklingenigma.recordservice.RecordService.Entity.Record;
 import tccavy.tricklingenigma.recordservice.RecordService.Service.RecordService;
 import io.swagger.annotations.Api;
@@ -21,12 +23,12 @@ public class RecordContainer {
         return recordService.GetAll();
     }
     @GetMapping("/Turns")
-    public List<Record> GetAllOrderedByTurns(){
-        return recordService.GetAllOrderedByTurns();
+    public List<Record> GetAllOrderedByTurns(@RequestParam("ID") UUID ID){
+        return recordService.GetAllSorted(ID, PageRequest.of(0,6, Sort.by(Sort.Direction.ASC, "turns")));
     }
     @GetMapping("/Time")
-    public List<Record> GetAllOrderedByTime(){
-        return recordService.GetAllOrderedByTime();
+    public List<Record> GetAllOrderedByTime(@RequestParam("ID") UUID ID){
+        return recordService.GetAllSorted(ID, PageRequest.of(0,6, Sort.by(Sort.Direction.ASC, "time")));
     }
     @GetMapping("{Record_ID}")
     public Record GetRecord(@PathVariable("Record_ID") UUID Record_ID){

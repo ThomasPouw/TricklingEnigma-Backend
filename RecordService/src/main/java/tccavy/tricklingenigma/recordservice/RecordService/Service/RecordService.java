@@ -1,5 +1,6 @@
 package tccavy.tricklingenigma.recordservice.RecordService.Service;
 
+import org.springframework.data.domain.Pageable;
 import tccavy.tricklingenigma.recordservice.RecordService.Entity.Record;
 import tccavy.tricklingenigma.recordservice.RecordService.Interface.Repository.RecordRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -40,10 +41,7 @@ public class RecordService {
     public List<Record> GetRecordsByUser_IDAndOrderedByRecordCreated(UUID user_id){
         return recordRepository.findRecordsByUserIDOrderByRecordCreated(user_id);
     }
-    public List<Record> GetAllOrderedByTurns(){
-        return recordRepository.findAllBy(PageRequest.of(0,6, Sort.by(Sort.Direction.ASC, "turns")));
-    }
-    public List<Record> GetAllOrderedByTime(){
-        return recordRepository.findAllBy(PageRequest.of(0,6, Sort.by(Sort.Direction.ASC, "time"))); //Pageable.ofSize(1).getSortOr(Sort.by(Sort.Direction.ASC, "time"))
+    public List<Record> GetAllSorted(UUID ID, Pageable pageable){
+        return recordRepository.findRecordsByLevelID(ID, pageable); //Pageable.ofSize(1).getSortOr(Sort.by(Sort.Direction.ASC, "time"))
     }
 }
