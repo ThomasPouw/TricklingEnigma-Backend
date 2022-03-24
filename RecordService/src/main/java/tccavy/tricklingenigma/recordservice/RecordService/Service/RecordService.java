@@ -1,11 +1,11 @@
-package thomas.pouw.trickingenigmabackend.RecordService.Service;
+package tccavy.tricklingenigma.recordservice.RecordService.Service;
 
+import tccavy.tricklingenigma.recordservice.RecordService.Entity.Record;
+import tccavy.tricklingenigma.recordservice.RecordService.Interface.Repository.RecordRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
-import thomas.pouw.trickingenigmabackend.RecordService.Entity.Record;
-import thomas.pouw.trickingenigmabackend.RecordService.Interface.Repository.RecordRepository;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -25,7 +25,7 @@ public class RecordService {
         return recordRepository.findRecordsByTurnsLessThanEqual(turns);
     }
     public List<Record> GetAllRecordsByLevelAndNationality(UUID level_id, UUID nationality_id){
-        return recordRepository.findRecordsByLevel_IDAndUser_Nationality_IdOrderByTimeAscTurnsAsc(level_id, nationality_id);
+        return null; //recordRepository.findRecordsByLevel_IDAndUser_Nationality_IdOrderByTimeAscTurnsAsc(level_id, nationality_id);
     }
     public Record saveOrUpdate(Record record){
         recordRepository.save(record);
@@ -35,10 +35,10 @@ public class RecordService {
         return recordRepository.findRecordByID(ID);
     }
     public Record GetAllRecordsByUserAndLevel(UUID user_id, UUID level_id){
-        return recordRepository.findFirstByUser_IdAndAndLevel_IDOrderByTurnsAscTimeAsc(user_id, level_id); //This is the Personal record board thingy...
+        return recordRepository.findFirstByUserIDAndLevelIDOrderByTurnsAscTimeAsc(user_id, level_id); //This is the Personal record board thingy...
     }
     public List<Record> GetRecordsByUser_IDAndOrderedByRecordCreated(UUID user_id){
-        return recordRepository.findRecordsByUser_IdOrderByRecordCreated(user_id);
+        return recordRepository.findRecordsByUserIDOrderByRecordCreated(user_id);
     }
     public List<Record> GetAllOrderedByTurns(){
         return recordRepository.findAllBy(PageRequest.of(0,6, Sort.by(Sort.Direction.ASC, "turns")));

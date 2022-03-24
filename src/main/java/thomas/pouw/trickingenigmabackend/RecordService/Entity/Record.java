@@ -1,12 +1,9 @@
 package thomas.pouw.trickingenigmabackend.RecordService.Entity;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import com.sun.istack.NotNull;
 import org.hibernate.annotations.CreationTimestamp;
-import org.hibernate.annotations.Type;
 import springfox.documentation.annotations.ApiIgnore;
 import thomas.pouw.trickingenigmabackend.LevelService.Entity.Level;
 import thomas.pouw.trickingenigmabackend.UserService.Entity.User;
@@ -29,7 +26,7 @@ public class Record {
     private int turns;
     @Column(name="record_created")
     @CreationTimestamp
-    private Date record_created;
+    private Date recordCreated;
     @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinTable(name = "record_user",
@@ -50,7 +47,7 @@ public class Record {
     public Record(int times, int turns, Date recordCreated){
         this.time = times;
         this.turns = turns;
-        this.record_created = recordCreated;
+        this.recordCreated = recordCreated;
     }
     public Record(int times, int turns){
         this.time = times;
@@ -59,7 +56,7 @@ public class Record {
     public Record() {}
 
     public Date getRecordCreated() {
-        return record_created;
+        return recordCreated;
     }
 
     public int getTurns() {
@@ -79,7 +76,7 @@ public class Record {
     }
 
     public void setRecordCreated(Date recordCreated) {
-        record_created = recordCreated;
+        this.recordCreated = recordCreated;
     }
 
     public void setTime(int time) {
