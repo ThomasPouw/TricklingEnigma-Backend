@@ -12,5 +12,5 @@ public class RecordServiceApplication {
         SpringApplication.run(RecordServiceApplication.class, args);
     }
 
-} //http://localhost:8080/swagger-ui/index.html#/
+} //http://localhost:8000/swagger-ui/index.html#/
 

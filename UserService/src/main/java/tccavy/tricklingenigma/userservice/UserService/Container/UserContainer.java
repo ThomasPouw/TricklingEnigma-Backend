@@ -7,6 +7,7 @@ import tccavy.tricklingenigma.userservice.UserService.Entity.User;
 import tccavy.tricklingenigma.userservice.UserService.Service.UserService;
 
 import java.util.List;
+import java.util.UUID;
 
 @Api(description = "User Controller", tags = { "User" })
 @RestController
@@ -25,5 +26,9 @@ public class UserContainer {
     @GetMapping
     public List<User> GetAllUsers(){
         return userService.GetAll();
+    }
+    @GetMapping("/Nationality")
+    public List<User> GetUsersByNationality(@RequestParam("nationality_ID") UUID nationality_Id){
+        return userService.GetUsersByNationality(nationality_Id);
     }
 }

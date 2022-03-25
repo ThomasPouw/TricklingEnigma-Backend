@@ -7,6 +7,7 @@ import tccavy.tricklingenigma.userservice.UserService.Interface.Repository.UserR
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 @Service
 public class UserService {
@@ -20,5 +21,11 @@ public class UserService {
         List<User> result = new ArrayList<>();
         userRepository.findAll().forEach(result::add);
         return result;
+    }
+    public List<User> GetUsersByNationality(UUID ID){
+        return userRepository.getUsersByNationality_Id(ID);
+    }
+    public User GetUserByID(UUID ID){
+        return userRepository.getUserById(ID);
     }
 }
