@@ -12,4 +12,4 @@ public class UserServiceApplication {
         SpringApplication.run(UserServiceApplication.class, args);
     }
 
-}
+} //http://localhost:8080/swagger-ui/index.html#/

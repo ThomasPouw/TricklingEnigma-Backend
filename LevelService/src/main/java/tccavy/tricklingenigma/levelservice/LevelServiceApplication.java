@@ -12,4 +12,4 @@ public class LevelServiceApplication {
         SpringApplication.run(LevelServiceApplication.class, args);
     }
 
-}//http://localhost:8040/swagger-ui/index.html#/
+}//http://localhost:8040/swagger-ui/index.html#/ Hello!
