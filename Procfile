@@ -1,1 +1,1 @@
-web: java -Dserver.port=$PORT -jar target/TricklingEnigma-Backend-1.0.jar
+web: java -Dserver.port=$PORT -jar target/TrickingEnigmaBackend-1.0-SNAPSHOT.jar
