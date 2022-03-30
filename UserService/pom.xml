@@ -8,11 +8,11 @@
         <version>2.6.4</version>
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
-    <groupId>Thomas.Pouw</groupId>
-    <artifactId>TrickingEnigmaBackend</artifactId>
-    <version>1.0-SNAPSHOT</version>
-    <name>TrickingEnigmaBackend</name>
-    <description>TrickingEnigmaBackend</description>
+    <groupId>tccavy.tricklingenigma</groupId>
+    <artifactId>UserService</artifactId>
+    <version>0.0.1-SNAPSHOT</version>
+    <name>UserService</name>
+    <description>UserService</description>
     <properties>
         <java.version>11</java.version>
     </properties>
@@ -68,9 +68,6 @@
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
-                <configuration>
-                    <mainClass>tccavy.tricklingenigma</mainClass>
-                </configuration>
             </plugin>
         </plugins>
     </build>
