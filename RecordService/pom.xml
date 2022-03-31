@@ -13,7 +13,7 @@
     <name>RecordService</name>
     <description>Its a record service</description>
     <properties>
-        <java.version>17</java.version>
+        <java.version>11</java.version>
     </properties>
     <dependencies>
         <dependency>
