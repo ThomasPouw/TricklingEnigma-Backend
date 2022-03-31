@@ -1,1 +1,1 @@
-web: java -Dserver.port=$PORT -jar target/TricklingEnigma-Backend-1.0.jar
+web: java $JAVA_OPTS -cp target/classes:target/dependency/* Thomas.Pouw.TrickingEnigmaBackend
