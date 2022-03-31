@@ -1,1 +1,1 @@
-web: java $JAVA_OPTS -cp ./RecordService/target/classes:./RecordService/target/dependency/* tccavy.tricklingenigma.recordservice
+web: java -Dserver.port=$PORT -jar $PATH_TO_JAR
