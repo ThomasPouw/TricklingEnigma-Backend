@@ -1,1 +1,1 @@
-web: java $JAVA_OPTS -cp target/classes:target/dependency/* tccavy.tricklingenigma.UserService
+web: java $JAVA_OPTS -cp ./RecordService/target/classes:./RecordService/target/dependency/* tccavy.tricklingenigma.RecordService
