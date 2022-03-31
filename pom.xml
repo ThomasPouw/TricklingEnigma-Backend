@@ -13,6 +13,9 @@
     <version>1.0-SNAPSHOT</version>
     <name>TrickingEnigmaBackend</name>
     <description>TrickingEnigmaBackend</description>
+    <modules>
+        <module>RecordService</module>
+    </modules>
     <properties>
         <java.version>11</java.version>
     </properties>
