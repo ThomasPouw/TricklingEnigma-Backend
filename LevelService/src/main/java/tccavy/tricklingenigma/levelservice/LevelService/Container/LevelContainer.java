@@ -19,7 +19,8 @@ public class LevelContainer {
     public List<Level> GetAllLevels(){
         return levelService.GetAll();
     }
-    public Level GetLevel(@RequestParam UUID id){
+    @GetMapping("/Single")
+    public Level GetLevelByID(@RequestParam UUID id){
         return levelService.GetLevelByID(id);
     }
     @PostMapping
