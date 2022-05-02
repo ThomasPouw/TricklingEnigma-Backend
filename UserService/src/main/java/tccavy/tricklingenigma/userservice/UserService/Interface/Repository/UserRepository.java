@@ -12,5 +12,6 @@ public interface UserRepository extends CrudRepository<User, UUID> {
     public User getUserByName(String name);
     public List<User> getUsersByNationality_Id(UUID nationality_Id);
     public User getUserById(UUID ID);
+    public User getUserBySecret(String ID);
     public List<User> getUsersBy(Pageable pageable);
 }

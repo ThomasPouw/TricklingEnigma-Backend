@@ -27,6 +27,10 @@ public class UserContainer {
     public List<User> GetAllUsers(){
         return userService.GetAll();
     }
+    @GetMapping("/S")
+    public User GetUserByID(@RequestParam String secret){
+        return userService.GetUserBySub(secret);
+    }
     @GetMapping("/Nationality")
     public List<User> GetUsersByNationality(@RequestParam("nationality_ID") UUID nationality_Id){
         return userService.GetUsersByNationality(nationality_Id);

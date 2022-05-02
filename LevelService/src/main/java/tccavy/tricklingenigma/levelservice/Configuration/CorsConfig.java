@@ -10,11 +10,12 @@ public class CorsConfig {
     //Welcome to Cors hell
     @Bean
     public WebMvcConfigurer corsConfigurer() {
+
         return new WebMvcConfigurer() {
             @Override
             public void addCorsMappings(CorsRegistry registry) {
                 registry.addMapping("/**")
-                        .allowedMethods("GET", "POST", "PUT");
+                        .allowedMethods("GET", "POST", "PUT", "OPTIONS","OPTION", "DELETE").allowedOrigins("http://localhost:4200");
             }
         };
     }

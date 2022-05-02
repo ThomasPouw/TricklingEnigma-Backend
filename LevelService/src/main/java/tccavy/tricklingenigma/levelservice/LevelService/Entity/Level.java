@@ -20,6 +20,10 @@ public class Level {
     private UUID ID;
     @Column(name="name")
     private String name;
+    @Column(name="x_length")
+    private int x_length;
+    @Column(name="y_length")
+    private int y_length;
     @OneToMany(mappedBy = "level")
     @JsonManagedReference
     private List<LevelSprite> levelSprite;
@@ -36,6 +40,10 @@ public class Level {
         this.name = name;
     }
 
+    public void setX_length(int x_length) {this.x_length = x_length;}
+
+    public void setY_length(int y_length) {this.y_length = y_length;}
+
     public void setLevelSprite(List<LevelSprite> levelSprite) {
         this.levelSprite= levelSprite;
     }
@@ -51,4 +59,8 @@ public class Level {
     public String getName() {
         return name;
     }
+
+    public int getX_length() {return x_length;}
+
+    public int getY_length() {return y_length;}
 }
