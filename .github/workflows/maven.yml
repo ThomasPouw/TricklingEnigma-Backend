@@ -30,6 +30,7 @@ jobs:
         image: thomaspouwtcc/trickling-enigma
         tags: latest
         registry: docker.io
+        dockerfile: Dockerfile
         username: ${{ secrets.DOCKER_USERNAME }}
         password: ${{ secrets.DOCKER_PASSWORD }}
         
