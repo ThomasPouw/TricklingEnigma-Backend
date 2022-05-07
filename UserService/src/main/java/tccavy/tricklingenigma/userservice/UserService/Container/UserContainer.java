@@ -11,6 +11,7 @@ import java.util.UUID;
 
 @Api(description = "User Controller", tags = { "User" })
 @RestController
+@CrossOrigin(origins = "http://localhost:4200")
 @RequestMapping("/User")
 public class UserContainer {
     @Autowired

@@ -1,5 +1,6 @@
 package tccavy.tricklingenigma.userservice.Configuration;
 
+import org.springframework.http.HttpMethod;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
@@ -28,8 +29,11 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http.cors().and()
+        http.cors().and().csrf().disable()
                 .authorizeRequests()
+                .regexMatchers(HttpMethod.GET, "/Nationality").permitAll()
+                .regexMatchers(HttpMethod.POST, "/User").permitAll()
+                .regexMatchers(HttpMethod.GET, "/User/*").permitAll()
                 .anyRequest().permitAll()
                 .and()
                 .httpBasic();
