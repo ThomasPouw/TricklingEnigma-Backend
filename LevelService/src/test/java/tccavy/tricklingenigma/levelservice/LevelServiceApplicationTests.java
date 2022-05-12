@@ -7,8 +7,8 @@ import tccavy.tricklingenigma.levelservice.LevelService.Container.LevelContainer
 
 @SpringBootTest
 class LevelServiceApplicationTests {
-    @Test
+    /*@Test
     void contextLoads() {
-    }
+    }*/
 
 }
