@@ -9,6 +9,7 @@ import javax.persistence.*;
 import java.util.List;
 import java.util.UUID;
 
+
 @ApiIgnore
 @Entity
 @Table(name = "user", schema = "public")
@@ -20,6 +21,8 @@ public class User {
     private UUID id;
     @Column(name = "name")
     private String name;
+    @Column(name = "secret")
+    private String secret;
     @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "nationality_id")
     private Nationality nationality;
@@ -46,6 +49,10 @@ public class User {
         return nationality;
     }
 
+    public String getSecret() {
+        return secret;
+    }
+
     public void setId(UUID id) {
         this.id = id;
     }
@@ -56,5 +63,9 @@ public class User {
 
     public void setNationality(Nationality nationality) {
         this.nationality = nationality;
+    }
+
+    public void setSecret(String secret) {
+        this.secret = secret;
     }
 }

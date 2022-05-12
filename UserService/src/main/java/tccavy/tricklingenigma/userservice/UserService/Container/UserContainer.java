@@ -11,6 +11,7 @@ import java.util.UUID;
 
 @Api(description = "User Controller", tags = { "User" })
 @RestController
+@CrossOrigin(origins = "http://localhost:4200")
 @RequestMapping("/User")
 public class UserContainer {
     @Autowired
@@ -26,6 +27,10 @@ public class UserContainer {
     @GetMapping
     public List<User> GetAllUsers(){
         return userService.GetAll();
+    }
+    @GetMapping("/S")
+    public User GetUserByID(@RequestParam String secret){
+        return userService.GetUserBySub(secret);
     }
     @GetMapping("/Nationality")
     public List<User> GetUsersByNationality(@RequestParam("nationality_ID") UUID nationality_Id){

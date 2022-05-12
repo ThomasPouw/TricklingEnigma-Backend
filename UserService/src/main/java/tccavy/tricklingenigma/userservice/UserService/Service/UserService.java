@@ -28,4 +28,7 @@ public class UserService {
     public User GetUserByID(UUID ID){
         return userRepository.getUserById(ID);
     }
+    public User GetUserBySub(String ID){
+        return userRepository.getUserBySecret(ID);
+    }
 }

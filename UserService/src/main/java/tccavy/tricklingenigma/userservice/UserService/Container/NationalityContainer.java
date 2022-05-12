@@ -8,9 +8,10 @@ import tccavy.tricklingenigma.userservice.UserService.Service.NationalityService
 
 import java.util.List;
 
-@Api(description = "Nationality Controller", tags = { "Nationality" })
 @RestController
+@CrossOrigin(origins = "http://localhost:4200")
 @RequestMapping("/Nationality")
+@Api(description = "Nationality Controller", tags = { "Nationality" })
 public class NationalityContainer {
     @Autowired
     private NationalityService nationalityService;

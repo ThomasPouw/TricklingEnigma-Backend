@@ -25,7 +25,8 @@ public class LevelSprite {
     private Sprite sprite;
     @Column(name="tile_name")
     private String tile_name;
-
+    @Column(name="rotation")
+    private int rotation;
     @ManyToOne
     @JoinColumn(name = "level_id", referencedColumnName = "id")
     @JsonBackReference
@@ -53,6 +54,8 @@ public class LevelSprite {
         this.tile_name = tile_name;
     }
 
+    public void setRotation(int rotation) {this.rotation = rotation;}
+
     public UUID getID() {return ID;}
     public int getX() {
         return X;
@@ -66,4 +69,6 @@ public class LevelSprite {
     public String getTile_name() {
         return tile_name;
     }
+
+    public int getRotation() {return rotation;}
 }
