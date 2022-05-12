@@ -98,6 +98,7 @@
                 </dependencies>
             </plugin>
         </plugins>
+        <finalName>recordService</finalName>
     </build>
 
 </project>
