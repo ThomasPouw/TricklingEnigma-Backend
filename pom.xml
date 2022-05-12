@@ -16,5 +16,7 @@
     <packaging>pom</packaging>
     <modules>
         <module>RecordService</module>
+        <module>LevelService</module>
+        <module>UserService</module>
     </modules>
 </project>
