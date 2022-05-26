@@ -74,7 +74,17 @@ public class LevelTest {
     @Test
     @Order(4)
     void GetAllLevels() {
-        assertThat(levelContainer.GetAllLevels()).isNotNull();
+        var level = new Test_Objects().level();
+        var level2 = new Test_Objects().level();
+        LevelService levelService = new LevelService(levelRepository);
+        Mockito.when(levelRepository.save(level)).thenReturn(level);
+        Mockito.when(levelRepository.save(level2)).thenReturn(level2);
+        levelRepository.save(level);
+        levelRepository.save(level2);
+        var list = new ArrayList<Level>();
+        list.add(level2);
+        Mockito.when(levelRepository.findAll()).thenReturn(list);
+        assertThat(levelRepository.findAll()).isNotNull();
     }
     @Test
     @Order(5)

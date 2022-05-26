@@ -80,7 +80,17 @@ public class LevelSpriteTest {
     @Test
     @Order(4)
     void GetAllLevels() {
-        assertThat(levelSpriteContainer.GetAll()).isNotNull();
+        var ls = new Test_Objects().levelSprite();
+        var ls2 = new Test_Objects().levelSprite();
+        LevelSpriteService levelSpriteService = new LevelSpriteService(levelSpriteRepository);
+        Mockito.when(levelSpriteRepository.save(ls)).thenReturn(ls);
+        Mockito.when(levelSpriteRepository.save(ls2)).thenReturn(ls2);
+        levelSpriteRepository.save(ls);
+        levelSpriteRepository.save(ls2);
+        var list = new ArrayList<LevelSprite>();
+        list.add(ls2);
+        Mockito.when(levelSpriteRepository.findAll()).thenReturn(list);
+        assertThat(levelSpriteRepository.findAll()).isNotNull();
     }
     @Test
     @Order(5)

@@ -12,6 +12,7 @@ import org.mockito.MockitoAnnotations;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import tccavy.tricklingenigma.userservice.UserService.Container.UserContainer;
+import tccavy.tricklingenigma.userservice.UserService.Entity.User;
 import tccavy.tricklingenigma.userservice.UserService.Interface.Repository.UserRepository;
 import tccavy.tricklingenigma.userservice.UserService.Service.UserService;
 
@@ -66,7 +67,18 @@ public class UserTest {
     @Test
     @Order(4)
     void GetAllUsers() {
-        assertThat(userContainer.GetAllUsers()).isNotNull();
+        var User = new Test_Objects().user();
+        var User2 = new Test_Objects().user();
+        UserService UserService = new UserService(UserRepository);
+        Mockito.when(UserRepository.save(User)).thenReturn(User);
+        Mockito.when(UserRepository.save(User2)).thenReturn(User2);
+        UserRepository.save(User);
+        UserRepository.save(User2);
+        var list = new ArrayList<User>();
+        list.add(User);
+        list.add(User2);
+        Mockito.when(UserRepository.findAll()).thenReturn(list);
+        assertThat(UserRepository.findAll()).isNotNull();
     }
     @Test
     @Order(5)
