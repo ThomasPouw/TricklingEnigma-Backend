@@ -36,4 +36,12 @@ public class UserContainer {
     public List<User> GetUsersByNationality(@RequestParam("nationality_ID") UUID nationality_Id){
         return userService.GetUsersByNationality(nationality_Id);
     }
+    @GetMapping("/Level")
+    public List<User> GetUsersByUserIDs(@RequestParam("user_IDs") String[] user_IDs){
+        return userService.GetUsersByUserIDs(user_IDs);
+    }
+    @GetMapping("/Level/Nationality")
+    public List<User> GetUsersByUserIDsAndNationalityID(@RequestParam("user_IDs") String[] user_IDs, @RequestParam("nationality_ID") String nationality_ID){
+        return userService.GetUsersByUserIDsAndNationalityID(user_IDs, nationality_ID);
+    }
 }

@@ -10,7 +10,8 @@ import java.util.UUID;
 @Entity
 @Table(name="levelsprite", schema = "public")
 @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
-public class LevelSprite {
+
+public class LevelSprite implements Cloneable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name="id")
@@ -71,4 +72,15 @@ public class LevelSprite {
     }
 
     public int getRotation() {return rotation;}
+
+    public LevelSprite clone() {
+        // Note2: Catch checked exception here so client or subclass doesn't need to.
+        LevelSprite result = null;
+        try {
+            result = (LevelSprite) super.clone();
+        } catch (CloneNotSupportedException e) {
+            throw new RuntimeException("Unable to clone.", e);
+        }
+        return result;
+    }
 }

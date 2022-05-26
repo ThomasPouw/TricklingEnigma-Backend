@@ -1,36 +1,54 @@
 package tccavy.tricklingenigma.levelservice;
 
-import org.junit.jupiter.api.MethodOrderer;
-import org.junit.jupiter.api.Order;
-import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.TestMethodOrder;
+import org.junit.Before;
+import org.junit.BeforeClass;
+import org.junit.jupiter.api.*;
+import org.junit.runner.RunWith;
+import org.junit.runners.JUnit4;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
+import org.mockito.Mockito;
+import org.mockito.MockitoAnnotations;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import tccavy.tricklingenigma.levelservice.LevelService.Container.LevelContainer;
 import tccavy.tricklingenigma.levelservice.LevelService.Container.LevelSpriteContainer;
+import tccavy.tricklingenigma.levelservice.LevelService.Container.SpriteContainer;
 import tccavy.tricklingenigma.levelservice.LevelService.Entity.Level;
 import tccavy.tricklingenigma.levelservice.LevelService.Entity.LevelSprite;
 import tccavy.tricklingenigma.levelservice.LevelService.Entity.Sprite;
+import tccavy.tricklingenigma.levelservice.LevelService.Interface.Repository.LevelSpriteRepository;
+import tccavy.tricklingenigma.levelservice.LevelService.Service.LevelSpriteService;
 
+import java.sql.Connection;
+import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.List;
+import java.util.UUID;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
 @SpringBootTest
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
+//@RunWith(JUnit4.class)
 public class LevelSpriteTest {
-    /*@Autowired
+    @InjectMocks private DBConnection dbConnection;
+    @Mock private Connection mockConnection;
+    @Mock private Statement mockStatement;
+    @Mock private LevelSpriteRepository levelSpriteRepository;
+    @Before
+    public void setUp() {
+        MockitoAnnotations.initMocks(this);
+    }
+
+    @Autowired
     private LevelSpriteContainer levelSpriteContainer;
-    private LevelSprite levelSprite;
+    @Autowired
+    private SpriteContainer spriteContainer;
+    @Autowired
+    private LevelContainer levelContainer;
+    private static LevelSprite levelSprite;
     public LevelSpriteTest(){
-        levelSprite = new LevelSprite();
-        Sprite sprite = new Sprite();
-        sprite.setAssetLocation("/asset/Big-block.png");
-        levelSprite.setRotation(2);
-        levelSprite.setX(2);
-        levelSprite.setY(4);
-        levelSprite.setTile_name("End");
-        levelSprite.setSprite(sprite);
     }
     @Test
     @Order(1)
@@ -40,18 +58,25 @@ public class LevelSpriteTest {
     @Test
     @Order(2)
     void PostLevelSprite() {
-        LevelSprite levelSprites = levelSpriteContainer.saveLevelSprite(levelSprite);
-        levelSprite = levelSprites;
-        assertThat(levelSpriteContainer.GetAll()).contains(levelSprite);
+        var ls = new Test_Objects().levelSprite();
+        LevelSpriteService levelSpriteService = new LevelSpriteService(levelSpriteRepository);
+        Mockito.when(levelSpriteRepository.save(ls)).thenReturn(ls);
+        var ls2 = levelSpriteRepository.save(ls);
+        assertThat(ls2).isSameAs(ls);
     }
     @Test
     @Order(3)
     void UpdateSprite() {
-        LevelSprite update = levelSprite;
-        LevelSprite oldLevelSprite = levelSpriteContainer.GetAll().get(4);
-        update.setRotation(3);
-        levelSpriteContainer.updateLevelSprite(update);
-        assertThat(levelSpriteContainer.GetAll()).doesNotContain(oldLevelSprite);
+        var ls = new Test_Objects().levelSprite();
+        LevelSpriteService levelSpriteService = new LevelSpriteService(levelSpriteRepository);
+        Mockito.when(levelSpriteRepository.save(ls)).thenReturn(ls);
+        var ls2 = levelSpriteRepository.save(ls);
+        assertThat(ls2).isSameAs(ls);
+        ls2 = ls.clone();
+        ls2.setY(98);
+        Mockito.when(levelSpriteRepository.save(ls2)).thenReturn(ls2);
+        assertThat(levelSpriteRepository.save(ls2).getY()).isNotEqualTo(ls.getY());
+
     }
     @Test
     @Order(4)
@@ -61,7 +86,16 @@ public class LevelSpriteTest {
     @Test
     @Order(5)
     void deleteLevel() {
-        levelSpriteContainer.deleteLevelSprite(levelSprite);
-        assertThat(levelSpriteContainer.GetAll()).doesNotContain(levelSprite);
-    }*/
+        var ls = new Test_Objects().levelSprite();
+        var ls2 = new Test_Objects().levelSprite();
+        LevelSpriteService levelSpriteService = new LevelSpriteService(levelSpriteRepository);
+        Mockito.when(levelSpriteRepository.save(ls)).thenReturn(ls);
+        Mockito.when(levelSpriteRepository.save(ls2)).thenReturn(ls2);
+        levelSpriteRepository.save(ls);
+        levelSpriteRepository.save(ls2);
+        var list = new ArrayList<>();
+        list.add(ls2);
+        levelSpriteContainer.deleteLevelSprite(ls);
+        assertThat(levelSpriteContainer.GetAll()).doesNotContain(ls);
+    }
 }

@@ -16,7 +16,9 @@ import java.util.UUID;
 public class RecordService {
     @Autowired
     private RecordRepository recordRepository;
-
+    public RecordService(RecordRepository recordRepository){
+    this.recordRepository = recordRepository;
+    }
     public List<Record> GetAll(){
         List<Record> result = new ArrayList<>();
         recordRepository.findAll().forEach(result::add);
@@ -25,8 +27,8 @@ public class RecordService {
     public List<Record> GetRecordsUnderEqualTurns(int turns){
         return recordRepository.findRecordsByTurnsLessThanEqual(turns);
     }
-    public List<Record> GetAllRecordsByLevelAndNationality(UUID level_id, UUID nationality_id){
-        return null; //recordRepository.findRecordsByLevel_IDAndUser_Nationality_IdOrderByTimeAscTurnsAsc(level_id, nationality_id);
+    public List<Record> GetAllRecordsByLevel(UUID level_id){
+        return recordRepository.findRecordsByLevelID(level_id);
     }
     public Record saveOrUpdate(Record record){
         recordRepository.save(record);
@@ -41,7 +43,7 @@ public class RecordService {
     public List<Record> GetRecordsByUser_IDAndOrderedByRecordCreated(UUID user_id){
         return recordRepository.findRecordsByUserIDOrderByRecordCreated(user_id);
     }
-    public List<Record> GetAllSorted(UUID ID, Pageable pageable){
-        return recordRepository.findRecordsByLevelID(ID, pageable); //Pageable.ofSize(1).getSortOr(Sort.by(Sort.Direction.ASC, "time"))
-    }
+    //public List<Record> GetAllSorted(UUID ID, Pageable pageable){
+    //    return recordRepository.findRecordsByLevelID(ID, pageable); //Pageable.ofSize(1).getSortOr(Sort.by(Sort.Direction.ASC, "time"))
+   // }
 }

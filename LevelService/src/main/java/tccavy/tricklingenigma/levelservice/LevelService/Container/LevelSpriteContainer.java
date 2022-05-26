@@ -29,4 +29,8 @@ public class LevelSpriteContainer {
     public List<LevelSprite> GetAll(){
         return levelSpriteService.GetAll();
     }
+    @DeleteMapping
+    public void deleteLevelSprite(LevelSprite levelSprite){
+        levelSpriteService.delete(levelSprite);
+    }
 }

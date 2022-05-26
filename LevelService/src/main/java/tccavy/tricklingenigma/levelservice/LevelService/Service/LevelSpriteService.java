@@ -12,7 +12,9 @@ import java.util.List;
 public class LevelSpriteService {
     @Autowired
     private LevelSpriteRepository levelSpriteRepository;
-
+    public LevelSpriteService(LevelSpriteRepository levelSpriteRepositorytest){
+        this.levelSpriteRepository = levelSpriteRepositorytest;
+    }
     public List<LevelSprite> GetAll(){
         List<LevelSprite> result = new ArrayList<>();
         levelSpriteRepository.findAll().forEach(result::add);
@@ -20,6 +22,9 @@ public class LevelSpriteService {
     }
     public void saveOrUpdate(LevelSprite levelSprite){
         levelSpriteRepository.save(levelSprite);
+    }
+    public void delete(LevelSprite levelSprite){
+        levelSpriteRepository.delete(levelSprite);
     }
 
 }

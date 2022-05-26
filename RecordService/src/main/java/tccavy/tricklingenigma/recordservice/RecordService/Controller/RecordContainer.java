@@ -22,14 +22,6 @@ public class RecordContainer {
 
         return recordService.GetAll();
     }
-    @GetMapping("/Turns")
-    public List<Record> GetAllOrderedByTurns(@RequestParam("ID") UUID ID){
-        return recordService.GetAllSorted(ID, PageRequest.of(0,6, Sort.by(Sort.Direction.ASC, "turns")));
-    }
-    @GetMapping("/Time")
-    public List<Record> GetAllOrderedByTime(@RequestParam("ID") UUID ID){
-        return recordService.GetAllSorted(ID, PageRequest.of(0,6, Sort.by(Sort.Direction.ASC, "time")));
-    }
     @GetMapping("{Record_ID}")
     public Record GetRecord(@PathVariable("Record_ID") UUID Record_ID){
         return recordService.GetRecordByID(Record_ID);
@@ -43,9 +35,9 @@ public class RecordContainer {
     public Record GetRecordFromUserAndLevel(@RequestParam("Level_ID") UUID level_id, @RequestParam("User_ID") UUID user_id){
         return recordService.GetAllRecordsByUserAndLevel(user_id, level_id);
     }
-    @GetMapping("/Level/Nationality")
-    public List<Record> GetRecordsFromLevelAndNationality(@RequestParam("Level_ID") UUID level_id, @RequestParam("Nationality_ID") UUID nationality_id){
-        return recordService.GetAllRecordsByLevelAndNationality(level_id, nationality_id);
+    @GetMapping("/Level")
+    public List<Record> GetRecordsFromLevelAndNationality(@RequestParam("Level_ID") UUID level_id){
+        return recordService.GetAllRecordsByLevel(level_id);
     }
     @GetMapping("/User")
     public List<Record> GetAllRecordsFromUser(@RequestParam("User_ID") UUID User_ID){

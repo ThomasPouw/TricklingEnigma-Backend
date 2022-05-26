@@ -9,7 +9,7 @@ import java.util.UUID;
 @Entity
 @Table(name="sprite", schema = "public")
 @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
-public class Sprite {
+public class Sprite implements Cloneable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name="id")
@@ -23,4 +23,14 @@ public class Sprite {
 
     public UUID getID() {return ID;}
     public String getAssetLocation() {return assetLocation;}
+    public Sprite clone() {
+        // Note2: Catch checked exception here so client or subclass doesn't need to.
+        Sprite result = null;
+        try {
+            result = (Sprite) super.clone();
+        } catch (CloneNotSupportedException e) {
+            throw new RuntimeException("Unable to clone.", e);
+        }
+        return result;
+    }
 }
