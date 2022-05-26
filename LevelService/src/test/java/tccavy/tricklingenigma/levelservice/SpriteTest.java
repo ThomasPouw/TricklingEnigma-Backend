@@ -20,6 +20,7 @@ import tccavy.tricklingenigma.levelservice.LevelService.Service.SpriteService;
 import java.util.ArrayList;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.mockito.Mockito.*;
 
 @SpringBootTest
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
@@ -88,6 +89,7 @@ public class SpriteTest {
         var list = new ArrayList<>();
         list.add(sprite1);
         spriteContainer.deleteSprite(sprite);
-        assertThat(spriteContainer.getAll()).doesNotContain(sprite);
+        SpriteContainer spriteCon = mock(SpriteContainer.class);
+        verify(spriteCon, times(1)).deleteSprite(sprite);
     }
 }
