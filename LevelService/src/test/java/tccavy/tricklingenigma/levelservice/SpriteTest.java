@@ -62,7 +62,18 @@ public class SpriteTest {
     @Test
     @Order(4)
     void GetAllSprites() {
-        assertThat(spriteContainer.getAll()).isNotNull();
+        var sprite = new Test_Objects().sprite();
+        var sprite1 = new Test_Objects().sprite();
+        SpriteService spriteService = new SpriteService(spriteRepository);
+        Mockito.when(spriteRepository.save(sprite)).thenReturn(sprite);
+        Mockito.when(spriteRepository.save(sprite1)).thenReturn(sprite1);
+        spriteRepository.save(sprite);
+        spriteRepository.save(sprite1);
+        var list = new ArrayList<Sprite>();
+        list.add(sprite1);
+        list.add(sprite);
+        Mockito.when(spriteRepository.findAll()).thenReturn(list);
+        assertThat(spriteRepository.findAll()).isNotNull();
     }
     @Test
     @Order(5)

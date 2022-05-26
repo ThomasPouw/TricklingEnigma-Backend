@@ -11,10 +11,12 @@ import org.mockito.MockitoAnnotations;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import tccavy.tricklingenigma.recordservice.RecordService.Controller.RecordContainer;
+import tccavy.tricklingenigma.recordservice.RecordService.Entity.Record;
 import tccavy.tricklingenigma.recordservice.RecordService.Interface.Repository.RecordRepository;
 import tccavy.tricklingenigma.recordservice.RecordService.Service.RecordService;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.Optional;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -64,11 +66,22 @@ public class RecordTest {
     @Test
     @Order(4)
     void GetAllRecords() {
-        assertThat(recordContainer.GetAll()).isNotNull();
+        var record = new Test_Objects().record();
+        var record1 = new Test_Objects().record();
+        RecordService recordService = new RecordService(recordRepository);
+        Mockito.when(recordRepository.save(record)).thenReturn(record);
+        Mockito.when(recordRepository.save(record1)).thenReturn(record1);
+        recordRepository.save(record);
+        recordRepository.save(record1);
+        var list = new ArrayList<Record>();
+        list.add(record);
+        list.add(record1);
+        Mockito.when(recordRepository.findAll()).thenReturn(list);
+        assertThat(recordRepository.findAll()).isNotNull();
     }
     @Test
     @Order(5)
-    void GetLevelByID() {
+    void GetRecordByID() {
         var record = new Test_Objects().record();
         var record1 = new Test_Objects().record();
         RecordService recordService = new RecordService(recordRepository);

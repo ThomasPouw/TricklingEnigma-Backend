@@ -13,11 +13,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import tccavy.tricklingenigma.userservice.UserService.Container.NationalityContainer;
 import tccavy.tricklingenigma.userservice.UserService.Entity.Nationality;
+import tccavy.tricklingenigma.userservice.UserService.Entity.User;
 import tccavy.tricklingenigma.userservice.UserService.Interface.Repository.NationalityRepository;
 import tccavy.tricklingenigma.userservice.UserService.Service.NationalityService;
+import tccavy.tricklingenigma.userservice.UserService.Service.UserService;
 
 import java.sql.Connection;
 import java.sql.Statement;
+import java.util.ArrayList;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
@@ -69,6 +72,18 @@ public class NationalityTest {
     @Test
     @Order(4)
     public void GetAllNationalities() {
-        assertThat(nationalityContainer.GetAll()).isNotNull();
+        var Nationality = new Test_Objects().nationality();
+        var Nationality2 = new Test_Objects().nationality();
+        NationalityService NationalityService = new NationalityService(nationalityRepository);
+        Mockito.when(nationalityRepository.save(Nationality)).thenReturn(Nationality);
+        Mockito.when(nationalityRepository.save(Nationality2)).thenReturn(Nationality2);
+        nationalityRepository.save(Nationality);
+        nationalityRepository.save(Nationality);
+        var list = new ArrayList<Nationality>();
+        list.add(Nationality);
+        list.add(Nationality2);
+        Mockito.when(nationalityRepository.findAll()).thenReturn(list);
+        assertThat(nationalityRepository.findAll()).isNotNull();
+        assertThat(nationalityRepository.findAll()).isNotNull();
     }
 }
