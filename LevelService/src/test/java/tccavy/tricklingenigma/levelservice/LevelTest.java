@@ -1,6 +1,7 @@
 package tccavy.tricklingenigma.levelservice;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.mockito.Mockito.*;
 
 import org.checkerframework.checker.units.qual.A;
 import org.junit.Before;
@@ -12,6 +13,7 @@ import org.mockito.MockitoAnnotations;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import tccavy.tricklingenigma.levelservice.LevelService.Container.LevelContainer;
+import tccavy.tricklingenigma.levelservice.LevelService.Container.LevelSpriteContainer;
 import tccavy.tricklingenigma.levelservice.LevelService.Entity.Level;
 import tccavy.tricklingenigma.levelservice.LevelService.Entity.LevelSprite;
 import tccavy.tricklingenigma.levelservice.LevelService.Interface.Repository.LevelRepository;
@@ -115,6 +117,7 @@ public class LevelTest {
         var list = new ArrayList<>();
         list.add(level2);
         levelContainer.deleteLevel(level);
-        assertThat(levelContainer.GetAllLevels()).doesNotContain(level);
+        LevelContainer levelCon = mock(LevelContainer.class);
+        verify(levelCon, times(1)).deleteLevel(level);
     }
 }

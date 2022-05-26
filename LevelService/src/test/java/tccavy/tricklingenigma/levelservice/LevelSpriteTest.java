@@ -27,6 +27,7 @@ import java.util.List;
 import java.util.UUID;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.mockito.Mockito.*;
 
 @SpringBootTest
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
@@ -105,6 +106,7 @@ public class LevelSpriteTest {
         var list = new ArrayList<>();
         list.add(ls2);
         levelSpriteContainer.deleteLevelSprite(ls);
-        assertThat(levelSpriteContainer.GetAll()).doesNotContain(ls);
+        LevelSpriteContainer levelSpriteCon = mock(LevelSpriteContainer.class);
+        verify(levelSpriteCon, times(1)).deleteLevelSprite(ls);
     }
 }
