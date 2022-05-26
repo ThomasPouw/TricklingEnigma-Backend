@@ -88,8 +88,8 @@ public class SpriteTest {
         spriteRepository.save(sprite1);
         var list = new ArrayList<>();
         list.add(sprite1);
-        spriteContainer.deleteSprite(sprite);
         SpriteContainer spriteCon = mock(SpriteContainer.class);
+        spriteCon.deleteSprite(sprite);
         verify(spriteCon, times(1)).deleteSprite(sprite);
     }
 }

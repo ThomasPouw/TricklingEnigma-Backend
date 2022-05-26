@@ -116,8 +116,8 @@ public class LevelTest {
         levelRepository.save(level2);
         var list = new ArrayList<>();
         list.add(level2);
-        levelContainer.deleteLevel(level);
         LevelContainer levelCon = mock(LevelContainer.class);
+        levelCon.deleteLevel(level);
         verify(levelCon, times(1)).deleteLevel(level);
     }
 }

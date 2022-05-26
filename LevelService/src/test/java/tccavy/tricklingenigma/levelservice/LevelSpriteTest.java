@@ -105,8 +105,8 @@ public class LevelSpriteTest {
         levelSpriteRepository.save(ls2);
         var list = new ArrayList<>();
         list.add(ls2);
-        levelSpriteContainer.deleteLevelSprite(ls);
         LevelSpriteContainer levelSpriteCon = mock(LevelSpriteContainer.class);
+        levelSpriteCon.deleteLevelSprite(ls);
         verify(levelSpriteCon, times(1)).deleteLevelSprite(ls);
     }
 }
