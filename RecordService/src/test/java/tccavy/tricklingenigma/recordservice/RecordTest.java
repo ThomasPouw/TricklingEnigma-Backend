@@ -57,7 +57,7 @@ public class RecordTest {
         assertThat(record1).isSameAs(record);
         record1 = record.clone();
         record1.setTime(364737);
-        Mockito.when(recordRepository.save(record1)).thenReturn(record);
+        Mockito.when(recordRepository.save(record1)).thenReturn(record1);
         assertThat(recordRepository.save(record1).getTime()).isNotEqualTo(record.getTime());
         assertThat(record1).isNotEqualTo(record);
     }
