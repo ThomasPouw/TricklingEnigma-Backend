@@ -36,7 +36,6 @@ public class NationalityTest {
     public void setUp() {
         MockitoAnnotations.initMocks(this);
     }
-    private Nationality nationality;
     public NationalityTest(){
     }
     @Test

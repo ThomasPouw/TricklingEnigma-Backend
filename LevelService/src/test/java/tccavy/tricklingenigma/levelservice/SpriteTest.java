@@ -27,7 +27,6 @@ public class SpriteTest {
     @Autowired
     private SpriteContainer spriteContainer;
     @Mock private SpriteRepository spriteRepository;
-    private Sprite sprite;
 
     public SpriteTest() {
     }

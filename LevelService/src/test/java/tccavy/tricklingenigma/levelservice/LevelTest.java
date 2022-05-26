@@ -41,13 +41,7 @@ public class LevelTest {
     public void setUp() {
         MockitoAnnotations.initMocks(this);
     }
-    private Level level;
     public LevelTest(){
-        level = new Level();
-        level.setName("testy");
-        level.setX_length(8);
-        level.setY_length(4);
-        level.setLevelSprite(new ArrayList<>());
     }
     @Test
     @Order(1)

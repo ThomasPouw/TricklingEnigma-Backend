@@ -47,7 +47,6 @@ public class LevelSpriteTest {
     private SpriteContainer spriteContainer;
     @Autowired
     private LevelContainer levelContainer;
-    private static LevelSprite levelSprite;
     public LevelSpriteTest(){
     }
     @Test
