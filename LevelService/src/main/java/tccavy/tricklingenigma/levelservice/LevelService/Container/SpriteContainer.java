@@ -21,11 +21,14 @@ public class SpriteContainer {
     }
     @PutMapping
     public Sprite updateSprite(@RequestBody Sprite sprite){
-        spriteService.saveOrUpdate(sprite);
-        return sprite;
+        return spriteService.saveOrUpdate(sprite);
     }
     @GetMapping
     public List<Sprite> getAll(){
         return spriteService.GetAll();
+    }
+    @DeleteMapping
+    public void deleteSprite(@RequestBody Sprite sprite){
+        spriteService.delete(sprite);
     }
 }

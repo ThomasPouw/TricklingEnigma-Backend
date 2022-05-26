@@ -12,6 +12,11 @@ import java.util.List;
 public class NationalityService {
     @Autowired
     private NationalityRepository nationalityRepository;
+
+    public NationalityService(NationalityRepository nationalityRepository) {
+        this.nationalityRepository = nationalityRepository;
+    }
+
     public Nationality saveOrUpdate(Nationality nationality){
         nationalityRepository.save(nationality);
         return nationality;

@@ -10,7 +10,7 @@ import java.util.UUID;
 @ApiIgnore
 @Entity
 @Table(name = "Record", schema = "public")
-public class Record {
+public class Record implements Cloneable{
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name="id")
@@ -92,4 +92,15 @@ public class Record {
     public void setLevelID(UUID level_id) {this.levelID = level_id;}
 
     public void setUserID(UUID user_id) {this.userID = user_id;}
+
+    public Record clone() {
+        // Note2: Catch checked exception here so client or subclass doesn't need to.
+        Record result = null;
+        try {
+            result = (Record) super.clone();
+        } catch (CloneNotSupportedException e) {
+            throw new RuntimeException("Unable to clone.", e);
+        }
+        return result;
+    }
 }

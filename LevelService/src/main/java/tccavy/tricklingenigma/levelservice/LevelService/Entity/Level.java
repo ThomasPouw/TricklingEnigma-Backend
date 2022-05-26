@@ -13,7 +13,7 @@ import java.util.UUID;
 @Entity
 @Table(name="level", schema = "public")
 @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
-public class Level {
+public class Level implements Cloneable{
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name="id")
@@ -63,4 +63,15 @@ public class Level {
     public int getX_length() {return x_length;}
 
     public int getY_length() {return y_length;}
+
+    public Level clone() {
+        // Note2: Catch checked exception here so client or subclass doesn't need to.
+        Level result = null;
+        try {
+            result = (Level) super.clone();
+        } catch (CloneNotSupportedException e) {
+            throw new RuntimeException("Unable to clone.", e);
+        }
+        return result;
+    }
 }

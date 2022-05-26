@@ -9,7 +9,7 @@ import java.util.UUID;
 @ApiIgnore
 @Entity
 @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
-public class Nationality {
+public class Nationality implements Cloneable{
     @Id
     @Column(name = "id", nullable = false)
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -37,5 +37,15 @@ public class Nationality {
     }
     public String getFlag() {
         return flag;
+    }
+    public Nationality clone() {
+        // Note2: Catch checked exception here so client or subclass doesn't need to.
+        Nationality result = null;
+        try {
+            result = (Nationality) super.clone();
+        } catch (CloneNotSupportedException e) {
+            throw new RuntimeException("Unable to clone.", e);
+        }
+        return result;
     }
 }

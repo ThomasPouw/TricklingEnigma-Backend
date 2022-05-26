@@ -14,7 +14,7 @@ import java.util.UUID;
 @Entity
 @Table(name = "user", schema = "public")
 @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
-public class User {
+public class User implements Cloneable {
     @Id
     @JoinColumn(name = "id", nullable = false)
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -67,5 +67,15 @@ public class User {
 
     public void setSecret(String secret) {
         this.secret = secret;
+    }
+    public User clone() {
+        // Note2: Catch checked exception here so client or subclass doesn't need to.
+        User result = null;
+        try {
+            result = (User) super.clone();
+        } catch (CloneNotSupportedException e) {
+            throw new RuntimeException("Unable to clone.", e);
+        }
+        return result;
     }
 }
