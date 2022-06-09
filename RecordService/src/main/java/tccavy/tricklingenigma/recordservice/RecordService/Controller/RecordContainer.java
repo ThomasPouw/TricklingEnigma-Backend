@@ -36,12 +36,12 @@ public class RecordContainer {
         return recordService.GetAllRecordsByUserAndLevel(user_id, level_id);
     }
     @GetMapping("/Level")
-    public List<Record> GetRecordsFromLevelAndNationality(@RequestParam("Level_ID") UUID level_id){
+    public List<Record> GetRecordsFromLevel(@RequestParam("Level_ID") UUID level_id){
         return recordService.GetAllRecordsByLevel(level_id);
     }
     @GetMapping("/User")
     public List<Record> GetAllRecordsFromUser(@RequestParam("User_ID") UUID User_ID){
-        return recordService.GetRecordsByUser_IDAndOrderedByRecordCreated(User_ID);
+        return recordService.GetRecordsByUser_ID(User_ID);
     }
     @PostMapping
     public Record saveNewRecord(@RequestBody Record record){

@@ -26,6 +26,10 @@ public class LevelContainer {
     public Level GetLevelByID(@RequestParam String id){
         return levelService.GetLevelByID(UUID.fromString(id));
     }
+    @GetMapping("/Record")
+    public Level[] GetLevelByID(@RequestParam("levelIDs") String[] levelIDs){
+        return levelService.GetLevelsByID(levelIDs);
+    }
     @PostMapping
     @PreAuthorize("hasAuthority('save:Level')")
     public Level saveLevel(@RequestBody Level level){
