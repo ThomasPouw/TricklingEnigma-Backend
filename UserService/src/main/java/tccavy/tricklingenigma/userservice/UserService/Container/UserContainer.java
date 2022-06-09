@@ -21,12 +21,14 @@ public class UserContainer {
         return userService.saveOrUpdate(user);
     }
     @PutMapping
-    public User updateUser(@RequestBody User user){
-        return userService.saveOrUpdate(user);
-    }
+    public User updateUser(@RequestBody User user){return userService.saveOrUpdate(user);}
     @GetMapping
     public List<User> GetAllUsers(){
         return userService.GetAll();
+    }
+    @GetMapping("/")
+    public User GetUser(@RequestParam String ID){
+        return userService.GetUserByID(UUID.fromString(ID));
     }
     @GetMapping("/S")
     public User GetUserByID(@RequestParam String secret){

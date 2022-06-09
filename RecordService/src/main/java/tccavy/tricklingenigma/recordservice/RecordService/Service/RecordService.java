@@ -40,8 +40,8 @@ public class RecordService {
     public Record GetAllRecordsByUserAndLevel(UUID user_id, UUID level_id){
         return recordRepository.findFirstByUserIDAndLevelIDOrderByTurnsAscTimeAsc(user_id, level_id); //This is the Personal record board thingy...
     }
-    public List<Record> GetRecordsByUser_IDAndOrderedByRecordCreated(UUID user_id){
-        return recordRepository.findRecordsByUserIDOrderByRecordCreated(user_id);
+    public List<Record> GetRecordsByUser_ID(UUID user_id){
+        return recordRepository.findRecordsByUserID(user_id);
     }
     //public List<Record> GetAllSorted(UUID ID, Pageable pageable){
     //    return recordRepository.findRecordsByLevelID(ID, pageable); //Pageable.ofSize(1).getSortOr(Sort.by(Sort.Direction.ASC, "time"))

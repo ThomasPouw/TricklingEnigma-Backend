@@ -25,6 +25,13 @@ public class LevelService {
     public Level GetLevelByID(UUID ID){
         return levelRepository.getLevelByID(ID);
     }
+    public Level[] GetLevelsByID(String[] IDs){
+        List<UUID> levelIDs = new ArrayList<>();
+        for (var ID: IDs) {
+            levelIDs.add(UUID.fromString(ID));
+        }
+        return levelRepository.getLevelsByIDIn(levelIDs);
+    }
     public Level saveOrUpdate(Level level){
         return levelRepository.save(level);
     }
