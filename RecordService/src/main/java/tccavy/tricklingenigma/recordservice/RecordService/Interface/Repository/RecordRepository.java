@@ -1,6 +1,7 @@
 package tccavy.tricklingenigma.recordservice.RecordService.Interface.Repository;
 
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
@@ -16,7 +17,7 @@ public interface RecordRepository extends CrudRepository<Record, UUID> {
     public Record findRecordByID(@Param("id") UUID id);
     public List<Record> findRecordsByUserID(UUID user_id);
     public Record findFirstByUserIDAndLevelIDOrderByTurnsAscTimeAsc(UUID user_id, UUID level_id);
-    public List<Record> findAllBy(Pageable pageable);
+    public List<Record> findRecordsBy(Sort sort);
     public List<Record> findRecordsByLevelID(UUID levelID);
 
 

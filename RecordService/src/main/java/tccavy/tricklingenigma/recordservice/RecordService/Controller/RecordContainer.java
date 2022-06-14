@@ -19,7 +19,6 @@ public class RecordContainer {
     RecordService recordService;
     @GetMapping
     public List<Record> GetAll(){
-
         return recordService.GetAll();
     }
     @GetMapping("{Record_ID}")

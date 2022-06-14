@@ -17,12 +17,10 @@ public class LevelContainer {
     @Autowired
     LevelService levelService;
     @GetMapping
-    @PreAuthorize("hasAuthority('read:Level')")
     public List<Level> GetAllLevels(){
         return levelService.GetAll();
     }
     @GetMapping("/Single")
-    @PreAuthorize("hasAuthority('read:Level')")
     public Level GetLevelByID(@RequestParam String id){
         return levelService.GetLevelByID(UUID.fromString(id));
     }
