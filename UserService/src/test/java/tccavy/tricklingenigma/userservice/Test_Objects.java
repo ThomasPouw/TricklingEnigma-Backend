@@ -19,7 +19,6 @@ public class Test_Objects {
         Nationality nationality = new Nationality();
         nationality.setId(UUID.randomUUID());
         nationality.setName("JohnDoeLand");
-        nationality.setFlag("Flag");
         return nationality;
     }
 }

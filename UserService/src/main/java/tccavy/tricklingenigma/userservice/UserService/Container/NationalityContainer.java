@@ -22,10 +22,12 @@ public class NationalityContainer {
     }
     @PostMapping
     public Nationality SaveNationality(@RequestBody Nationality nationality){
+        System.out.println("test S");
         return nationalityService.saveOrUpdate(nationality);
     }
     @PutMapping
     public Nationality UpdateNationality(@RequestBody Nationality nationality){
+        System.out.println("test U");
         return nationalityService.saveOrUpdate(nationality);
     }
 }

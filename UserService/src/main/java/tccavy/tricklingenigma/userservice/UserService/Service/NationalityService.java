@@ -18,6 +18,7 @@ public class NationalityService {
     }
 
     public Nationality saveOrUpdate(Nationality nationality){
+        System.out.println("test");
         nationalityRepository.save(nationality);
         return nationality;
     }

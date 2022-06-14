@@ -16,14 +16,9 @@ public class Nationality implements Cloneable{
     private UUID id;
     @Column(name="name")
     private String name;
-    @Column(name="flag")
-    private String flag;
 
     public void setId(UUID id) {
         this.id = id;
-    }
-    public void setFlag(String flag) {
-        this.flag = flag;
     }
     public void setName(String name) {
         this.name = name;
@@ -34,9 +29,6 @@ public class Nationality implements Cloneable{
     }
     public String getName() {
         return name;
-    }
-    public String getFlag() {
-        return flag;
     }
     public Nationality clone() {
         // Note2: Catch checked exception here so client or subclass doesn't need to.
