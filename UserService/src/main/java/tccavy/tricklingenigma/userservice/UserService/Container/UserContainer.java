@@ -18,6 +18,8 @@ public class UserContainer {
     private UserService userService;
     @PostMapping
     public User saveUser(@RequestBody User user){
+        System.out.println("Audio Jungle");
+        System.out.println(user);
         return userService.saveOrUpdate(user);
     }
     @PutMapping
