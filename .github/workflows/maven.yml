@@ -13,7 +13,16 @@ jobs:
   Dockerise:
 
     runs-on: ubuntu-latest
-
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - dockerfile: DockerFile-User
+            image: thomaspouwtcc/trickling-enigma
+          - dockerfile: DockerFile-Record
+            image: thomaspouwtcc/trickling-enigma-record
+          - dockerfile: DockerFile-Level
+            image: thomaspouwtcc/trickling-enigma-level
     steps:
     - uses: actions/checkout@v2
     - name: Set up JDK 11
@@ -27,12 +36,12 @@ jobs:
     - name: Docker Build & Push Action
       uses: mr-smithers-excellent/docker-build-push@v5.6
       with:
-        image: thomaspouwtcc/trickling-enigma
-        tags: latest
-        registry: docker.io
-        dockerfile: Dockerfile
-        username: ${{ secrets.DOCKER_USERNAME }}
-        password: ${{ secrets.DOCKER_PASSWORD }}
+          image: ${{ matrix.image }}
+          tags: latest
+          registry: docker.io
+          dockerfile: ${{ matrix.dockerfile }}
+          username: ${{ secrets.DOCKER_USERNAME }}
+          password: ${{ secrets.DOCKER_PASSWORD }}
         
   Deploy:
     runs-on: ubuntu-latest
