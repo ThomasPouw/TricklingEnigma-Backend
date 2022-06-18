@@ -17,11 +17,11 @@ jobs:
       fail-fast: false
       matrix:
         include:
-          - dockerfile: UserService/DockerFile
+          - dockerfile: ./UserService/DockerFile
             image: thomaspouwtcc/trickling-enigma
-          - dockerfile: RecordService/DockerFile
+          - dockerfile: ./RecordService/DockerFile
             image: thomaspouwtcc/trickling-enigma-record
-          - dockerfile: LevelService/DockerFile
+          - dockerfile: ./LevelService/DockerFile
             image: thomaspouwtcc/trickling-enigma-level
     steps:
     - uses: actions/checkout@v2
