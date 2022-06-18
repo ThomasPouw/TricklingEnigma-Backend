@@ -1,5 +1,5 @@
 FROM openjdk:11
 EXPOSE 8060
 ADD UserService/target/userService.jar userService.jar
-ADD RecordService/target/recordService.jar recordService.jar
+ENTRYPOINT ["java", "-jar", "userService.jar"]
 
