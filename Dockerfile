@@ -5,4 +5,6 @@ EXPOSE 8040
 ADD LevelService/target/levelService.jar levelService.jar
 ADD UserService/target/userService.jar userService.jar
 ADD RecordService/target/recordService.jar recordService.jar
-ENTRYPOINT ["java", "-jar", "levelService.jar", "&", "java", "-jar", "recordService.jar", "&","java", "-jar", "userService.jar"]
+ENTRYPOINT ["java", "-jar", "levelService.jar"]
+ENTRYPOINT ["java", "-jar", "recordService.jar"]
+ENTRYPOINT ["java", "-jar", "userService.jar"]
